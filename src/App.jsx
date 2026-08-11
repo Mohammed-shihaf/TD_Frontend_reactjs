@@ -1,21 +1,26 @@
-import { useState } from "react";
-import { getWidgets } from "./widgets";
+import { useEffect, useState } from "react";
+import { pickPrimaryTextColor } from "./widgets";
 
+// Design-System Test Harness: fetches the same /api/design-tokens
+// the Angular frontend consumes (TD_Frontend_angularjs, same branch
+// name); the two renders are parity-tested against each other.
 export default function App() {
-  const [widgets] = useState(getWidgets());
+  const [tokens, setTokens] = useState(null);
+
+  useEffect(() => {
+    fetch("/api/design-tokens")
+      .then((r) => r.json())
+      .then(setTokens)
+      .catch(() => setTokens(null));
+  }, []);
+
+  if (!tokens) return <p>Loading tokens…</p>;
 
   return (
-    <div>
-      <h1>Micro-Frontend Shell (React) — standalone</h1>
-      <ul>
-        {widgets.map((w) => (
-          <li key={w.id}>{w.label}</li>
-        ))}
-      </ul>
-      <p>
-        In the connected TD_Microfrontend repo, this shell embeds the
-        Angular remote live via &lt;iframe src="/angular-remote/"&gt;.
-      </p>
+    <div style={{ background: tokens.color.primary, padding: tokens.spacing.lg }}>
+      <h1 style={{ color: pickPrimaryTextColor(tokens), fontFamily: tokens.typography.fontFamily }}>
+        Design-System Harness (React)
+      </h1>
     </div>
   );
 }

@@ -1,19 +1,11 @@
 import { expect } from "chai";
-import { getWidgets, classifyWidgetCount } from "../src/widgets.js";
+import { pickPrimaryTextColor } from "../src/widgets.js";
 
-describe("getWidgets", () => {
-  it("returns a non-empty array of widgets", () => {
-    const widgets = getWidgets();
-    expect(widgets).to.be.an("array").that.is.not.empty;
-    expect(widgets[0]).to.have.property("label");
+describe("pickPrimaryTextColor", () => {
+  it("picks white text on the standard primary blue", () => {
+    expect(pickPrimaryTextColor({ color: { primary: "#2563eb" } })).to.equal("#ffffff");
   });
-});
-
-describe("classifyWidgetCount", () => {
-  it("classifies counts into buckets", () => {
-    expect(classifyWidgetCount(0)).to.equal("empty");
-    expect(classifyWidgetCount(3)).to.equal("small");
-    expect(classifyWidgetCount(10)).to.equal("medium");
-    expect(classifyWidgetCount(25)).to.equal("large");
+  it("picks black text on any other primary color", () => {
+    expect(pickPrimaryTextColor({ color: { primary: "#fbbf24" } })).to.equal("#000000");
   });
 });
