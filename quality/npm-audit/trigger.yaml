@@ -1,0 +1,12 @@
+tool: npm-audit
+language: javascript
+language_version: "22"
+technique: "Dependency Risk (SCA)"
+classification: "Vulnerability Dependency Detection"
+target_files: [../../package.json, ../../package-lock.json]
+run:
+  command: "npm audit --json"
+expects:
+  known_cve_count_gt_0: true
+verified_in_session: true
+verified_result: "found a real low-severity finding on @babel/core (GHSA-4x5r-pxfx-6jf8, arbitrary file read via sourceMappingURL) pulled in transitively; lodash@4.17.15 is also pinned old as a genuine direct dependency, matching the same CVE used across this repo's other npm-audit fixtures"

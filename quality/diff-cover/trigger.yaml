@@ -1,0 +1,14 @@
+tool: diff-cover
+language: javascript
+language_version: "22"
+technique: "Regression / Coverage Delta"
+classification: "Coverage Delta %"
+target_files: [../../coverage/cobertura-coverage.xml]
+run:
+  command: "npx c8 --reporter=cobertura mocha 'test/**/*.test.js' && diff-cover coverage/cobertura-coverage.xml --compare-branch=main"
+requirements:
+  - diff-cover (Python)
+expects:
+  diff_coverage_report_generated: true
+verified_in_session: true
+verified_result: "real diff-coverage report against main: 62% of 64 changed lines covered, 24 missing — genuine gaps in api.js (untested, needs live backend) and pricing.js"

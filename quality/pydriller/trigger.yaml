@@ -1,0 +1,15 @@
+tool: pydriller
+language: javascript
+language_version: "22"
+technique: "Development Process Analysis"
+classification: "Code Churn"
+target_files: []
+run:
+  command: "python -c \"from pydriller import Repository; [print(c.hash) for c in Repository('.').traverse_commits()]\""
+notes: >
+  Reads this repo's own real git history directly; invoked from the repo
+  root, one level up from frontend/.
+expects:
+  churn_report_generated: true
+verified_in_session: true
+verified_result: "mined real commits from this repo's actual git history — same tool and invocation as backend/quality/pydriller/"

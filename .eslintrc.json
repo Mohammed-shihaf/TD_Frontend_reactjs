@@ -1,0 +1,8 @@
+{
+  "env": { "browser": true, "es2022": true, "mocha": true },
+  "parserOptions": { "ecmaVersion": 2022, "sourceType": "module", "ecmaFeatures": { "jsx": true } },
+  "plugins": ["react", "security", "sonarjs"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react/jsx-runtime", "plugin:security/recommended-legacy", "plugin:sonarjs/recommended"],
+  "settings": { "react": { "version": "19.2" } },
+  "rules": {}
+}

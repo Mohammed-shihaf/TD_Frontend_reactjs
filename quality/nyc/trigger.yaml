@@ -1,0 +1,11 @@
+tool: nyc
+language: javascript
+language_version: "22"
+technique: "Statement / Branch Coverage"
+target_files: [../../src/]
+run:
+  command: "npx c8 --reporter=text mocha 'test/**/*.test.js'"
+expects:
+  coverage_report_generated: true
+verified_in_session: true
+verified_result: "100% statements/branches/functions/lines on src/widgets.js — both exported functions and all classifyWidgetCount branches are exercised by the 2-test suite. Substituted c8 for nyc: nyc's require-hook does not instrument native ESM; c8 reads Node's native V8 coverage instead and is nyc's standard ESM-compatible sibling"

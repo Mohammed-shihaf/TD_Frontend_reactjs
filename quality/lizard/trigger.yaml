@@ -1,0 +1,12 @@
+tool: lizard
+language: javascript
+language_version: "22"
+technique: "Structural Analysis"
+classification: "Cyclomatic Complexity"
+target_files: [../../src/widgets.js]
+run:
+  command: "lizard src/widgets.js"
+expects:
+  complexity_report_generated: true
+verified_in_session: true
+verified_result: "getWidgets CCN 1 (3 NLOC), classifyWidgetCount CCN 4 (6 NLOC); no thresholds exceeded"
