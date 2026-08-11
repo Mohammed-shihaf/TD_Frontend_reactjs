@@ -1,5 +1,5 @@
-PROJECT TYPE: Micro-Frontend Platform (standalone frontend module)
-(extracted from the connected TD_Microfrontend_BE_nodejs_FE_reactjs_FE_angularjs repo)
+PROJECT TYPE: Framework Migration Bridge (standalone frontend module)
+(extracted from the connected TD_Migrationbridge_BE_nodejs_FE_reactjs_FE_angularjs repo)
 
 BUILD COMMANDS
 ==============
@@ -9,15 +9,14 @@ npm run build    # real vite build, verified passing (React 22)
 
 ARCHITECTURE
 ============
-This is the React shell of the Micro-Frontend Platform, standalone.
-In the connected repo it embeds the Angular remote live via
-<iframe src="/angular-remote/">; that Angular build isn't present in
-this single-technology repo (see TD_Frontend_angularjs's
-microfrontend_angularjs<version> branches for the remote itself).
+This is the NEW app in the Migration Bridge: served at /app by
+TD_Backend_nodejs's migrationbridge branches' route-split backend,
+alongside the legacy Angular app at /legacy (TD_Frontend_angularjs,
+same branch name).
 
   src/widgets.js      plain module, real logic (also tool-fixture target)
-  src/App.jsx          React UI consuming widgets.js
+  src/App.jsx          new-app UI, fetches /api/widgets
   test/widgets.test.js mocha + chai test suite
   quality/              13 real JS code-quality tool fixtures
 
-Branches: microfrontend_reactjs<18|20|22|24>
+Branches: migrationbridge_reactjs<18|20|22|24>
