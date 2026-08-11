@@ -1,21 +1,29 @@
-import { useState } from "react";
-import { getWidgets } from "./widgets";
+import { useEffect, useState } from "react";
+import { classifyOrderSize } from "./widgets";
 
+// SaaS Platform: React only calls the /api/customer/* namespace.
+// The Angular admin app (TD_Frontend_angularjs, same branch name)
+// only calls /api/admin/*. See TD_Backend_nodejs's saasplatform
+// branches for the real backend enforcing that boundary.
 export default function App() {
-  const [widgets] = useState(getWidgets());
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/customer/products")
+      .then((r) => r.json())
+      .then((data) => setProducts(data.products))
+      .catch(() => setProducts([]));
+  }, []);
 
   return (
     <div>
-      <h1>Micro-Frontend Shell (React) — standalone</h1>
+      <h1>SaaS Platform — Customer App (React)</h1>
+      <p>Order size bucket example: {classifyOrderSize(products.length)}</p>
       <ul>
-        {widgets.map((w) => (
-          <li key={w.id}>{w.label}</li>
+        {products.map((p) => (
+          <li key={p.id}>{p.name}</li>
         ))}
       </ul>
-      <p>
-        In the connected TD_Microfrontend repo, this shell embeds the
-        Angular remote live via &lt;iframe src="/angular-remote/"&gt;.
-      </p>
     </div>
   );
 }
