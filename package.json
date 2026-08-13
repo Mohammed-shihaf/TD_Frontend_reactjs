@@ -1,5 +1,5 @@
 {
-  "name": "td-frontend-reactjs",
+  "name": "td-frontend-reactjs-staticsite-vite",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,19 +10,9 @@
     "preview": "vite preview",
     "test": "mocha test/**/*.test.js"
   },
-  "dependencies": {
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
-  },
   "devDependencies": {
-    "@stryker-mutator/core": "^9.6.1",
-    "@stryker-mutator/mocha-runner": "^9.6.1",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.4",
     "chai": "^4.5.0",
     "eslint": "^8.57.1",
-    "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-security": "^3.0.1",
     "eslint-plugin-sonarjs": "^0.25.1",
     "mocha": "^10.7.3",
