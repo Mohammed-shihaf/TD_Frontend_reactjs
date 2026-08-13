@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { getWidgets, classifyWidgetCount } from "../src/widgets.js";
+import { getWidgets, classifyWidgetCount } from "../src/index.js";
 
 describe("getWidgets", () => {
   it("returns a non-empty array of widgets", () => {

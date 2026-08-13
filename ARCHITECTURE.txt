@@ -1,23 +1,20 @@
-PROJECT TYPE: Micro-Frontend Platform (standalone frontend module)
-(extracted from the connected TD_Microfrontend_BE_nodejs_FE_reactjs_FE_angularjs repo)
+PROJECT TYPE: JavaScript Library / NPM Package (JavaScript taxonomy)
+BUILD TOOL: Rollup
 
 BUILD COMMANDS
 ==============
 npm install
-npm test        # real mocha test suite, verified passing
-npm run build    # real vite build, verified passing (React 22)
+npm run build    # rollup -c -> dist/index.cjs.js + dist/index.esm.js (real dual-format build)
+npm test         # builds, then mocha + chai (source AND the built CJS artifact via require())
 
 ARCHITECTURE
 ============
-This is the React shell of the Micro-Frontend Platform, standalone.
-In the connected repo it embeds the Angular remote live via
-<iframe src="/angular-remote/">; that Angular build isn't present in
-this single-technology repo (see TD_Frontend_angularjs's
-microfrontend_angularjs<version> branches for the remote itself).
+A minimal, real npm-publishable utility library, built with Rollup to produce both a
+CommonJS and an ES Module output (package.json "main"/"module"/"exports" wired to the
+real build artifacts). Rollup is chosen because it's the standard tool for bundling
+libraries (as opposed to applications) - its tree-shaking and dual-format output are
+exactly this use case, distinct from the app-bundler tools used elsewhere in this repo.
 
-  src/widgets.js      plain module, real logic (also tool-fixture target)
-  src/App.jsx          React UI consuming widgets.js
-  test/widgets.test.js mocha + chai test suite
-  quality/              13 real JS code-quality tool fixtures
-
-Branches: microfrontend_reactjs<18|20|22|24>
+  src/index.js        library source (also the package's public API)
+  test/index.test.js  tests against the source
+  test/dist.test.js   tests against the actual built dist/index.cjs.js artifact
