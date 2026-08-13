@@ -1,23 +1,22 @@
-PROJECT TYPE: Micro-Frontend Platform (standalone frontend module)
-(extracted from the connected TD_Microfrontend_BE_nodejs_FE_reactjs_FE_angularjs repo)
+PROJECT TYPE: Frontend Web Application / SPA (JavaScript taxonomy)
+BUILD TOOL: Webpack
 
 BUILD COMMANDS
 ==============
 npm install
-npm test        # real mocha test suite, verified passing
-npm run build    # real vite build, verified passing (React 22)
+npm run build    # real webpack production bundle -> dist/
+npm run dev      # webpack-dev-server
+npm test         # mocha + chai
 
 ARCHITECTURE
 ============
-This is the React shell of the Micro-Frontend Platform, standalone.
-In the connected repo it embeds the Angular remote live via
-<iframe src="/angular-remote/">; that Angular build isn't present in
-this single-technology repo (see TD_Frontend_angularjs's
-microfrontend_angularjs<version> branches for the remote itself).
+A minimal single-page React application, bundled with Webpack (webpack.config.js +
+babel-loader for JSX, html-webpack-plugin for the HTML shell, style-loader/css-loader
+for CSS). Chosen because Webpack is the most widely used bundler for general-purpose
+SPA builds, distinct from the Vite-based builds used elsewhere in this repo's other
+branches.
 
-  src/widgets.js      plain module, real logic (also tool-fixture target)
-  src/App.jsx          React UI consuming widgets.js
-  test/widgets.test.js mocha + chai test suite
-  quality/              13 real JS code-quality tool fixtures
-
-Branches: microfrontend_reactjs<18|20|22|24>
+  src/main.jsx      React entry point
+  src/App.jsx        root component
+  src/widgets.js      pure-logic module (tested)
+  test/widgets.test.js  mocha + chai test suite
