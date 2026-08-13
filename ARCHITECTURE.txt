@@ -1,23 +1,21 @@
-PROJECT TYPE: Micro-Frontend Platform (standalone frontend module)
-(extracted from the connected TD_Microfrontend_BE_nodejs_FE_reactjs_FE_angularjs repo)
+PROJECT TYPE: Node.js Application (JavaScript taxonomy)
+BUILD TOOL: esbuild
 
 BUILD COMMANDS
 ==============
 npm install
-npm test        # real mocha test suite, verified passing
-npm run build    # real vite build, verified passing (React 22)
+npm run build    # esbuild bundles src/cli.js -> dist/cli.bundle.js (real Node CLI bundle)
+npm start        # runs the built bundle
+npm test         # mocha + chai
 
 ARCHITECTURE
 ============
-This is the React shell of the Micro-Frontend Platform, standalone.
-In the connected repo it embeds the Angular remote live via
-<iframe src="/angular-remote/">; that Angular build isn't present in
-this single-technology repo (see TD_Frontend_angularjs's
-microfrontend_angularjs<version> branches for the remote itself).
+A minimal Node.js command-line application, bundled with esbuild (platform: "node",
+single-file ESM output with a shebang banner). esbuild is chosen for its speed and
+because it's a real, widely-used tool for bundling Node.js CLIs/services into a single
+distributable file, distinct from the browser-focused bundlers used in this repo's
+other taxonomy branches.
 
-  src/widgets.js      plain module, real logic (also tool-fixture target)
-  src/App.jsx          React UI consuming widgets.js
-  test/widgets.test.js mocha + chai test suite
-  quality/              13 real JS code-quality tool fixtures
-
-Branches: microfrontend_reactjs<18|20|22|24>
+  src/widgets.js   pure-logic module (shared, tested)
+  src/cli.js        Node CLI entry point
+  test/cli.test.js  mocha + chai test suite
